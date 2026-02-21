@@ -6,8 +6,8 @@ Tushare Pro 实例统一初始化，供本目录下所有 Tushare 相关脚本�
 import os
 import tushare as ts
 
-# 可选：自定义 API 地址。不设置时使用默认代理（保证可获取数据）；使用官方接口时可设为空或官方地址
-DEFAULT_HTTP_URL = os.environ.get("TUSHARE_HTTP_URL", "http://lianghua.nanyangqiankun.top")
+# 可选：自定义 API 地址。仅从环境变量 TUSHARE_HTTP_URL 读取，不设则使用 Tushare 官方地址（不写死默认代理，避免泄露第三方地址）
+DEFAULT_HTTP_URL = os.environ.get("TUSHARE_HTTP_URL", "")
 
 
 def get_pro():
