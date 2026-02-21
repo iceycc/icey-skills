@@ -26,6 +26,7 @@
 | **stock-visualization** | K 线图、成交量图、多指标仪表盘（MA、RSI、ATR、成交量等）。 |
 | **technical-indicators** | MA/MACD/RSI/ATR 计算与交易信号（金叉/死叉、超买超卖、止损位）。 |
 | **fundamental-analysis** | 财务指标获取（PE、PB、ROE 等）、格雷厄姆 PB 选股、多因子基本面选股。 |
+| **multi-factor-stock-picking** | 多因子选股：QMT 下载板块财务池 → 绝对阈值筛选 或 行业内打分筛选。板块、日期、阈值由参数传入。 |
 
 ### 内容 / 媒体
 
@@ -66,6 +67,14 @@ python skills/technical-indicators/scripts/calc_atr.py
 python skills/fundamental-analysis/scripts/get_financial_indicators.py
 python skills/fundamental-analysis/scripts/graham_pb_screener.py
 python skills/fundamental-analysis/scripts/multi_factor_screener.py
+```
+
+### 5. 多因子选股（QMT 财务池 + 筛选）
+```bash
+# multi-factor-stock-picking：先下载财务池，再筛选
+python skills/multi-factor-stock-picking/scripts/download_fina_pool_qmt.py --sector "沪深A股" --start-date 20150101 --output-dir ./data
+python skills/multi-factor-stock-picking/scripts/screen_absolute.py --data-dir ./data --roe-min 15 --netprofit-yoy-min 10
+python skills/multi-factor-stock-picking/scripts/screen_industry.py --data-dir ./data --score-min 18 --viz
 ```
 
 ---

@@ -48,6 +48,7 @@ def download_minute_data(
 
         print(f"\n步骤2：下载 {freq} 数据（前复权）...")
         df = ts.pro_bar(
+            api=pro,
             ts_code=stock_code,
             start_date=target_date,
             end_date=target_date,

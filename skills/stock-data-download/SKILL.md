@@ -14,8 +14,8 @@ description: 股票数据下载工具集，支持从 QMT、Tushare、AkShare 下
 | 类型     | 数据源   | 脚本 | 说明 | 主要参数 |
 |----------|----------|------|------|----------|
 | 日线     | QMT      | `download_qmt_daily.py` | 日线 | `--stock-code` `--start-date` `--end-date` `--output-dir` |
-| 日线-历史 | Tushare  | `download_tushare_daily.py` | **历史数据**（pro.daily，未复权） | `--stock-code` `--start-date` `--end-date` `--output-dir` |
-| 日线-复权 | Tushare  | `download_tushare_daily_adj.py` | **复权日线**（ts.pro_bar 前复权/后复权） | `--stock-code` `--start-date` `--end-date` `--output-dir` `--adj`(qfq/hfq) |
+| 日线-历史 | Tushare  | `download_tushare_daily_histroy.py` | **历史数据**（pro.daily，未复权） | `--stock-code` `--start-date` `--end-date` `--output-dir` |
+| 日线-复权 | Tushare  | `download_tushare_daily.py` | **复权日线**（ts.pro_bar 前复权/后复权） | `--stock-code` `--start-date` `--end-date` `--output-dir` `--adj`(qfq/hfq) |
 | 日线     | AkShare  | `download_akshare_daily.py` | 日线（前复权） | `--stock-code` `--start-date` `--end-date` `--output-dir` |
 | 分钟     | QMT      | `download_qmt_minute.py` | - | `--stock-code` `--target-date` `--period`(1m/5m/15m/30m/60m) `--output-dir` |
 | 分钟     | Tushare  | `download_tushare_minute.py` | - | `--stock-code` `--target-date` `--freq`(1min/5min/…) `--output-dir` |
@@ -59,6 +59,15 @@ result = download_stock_data(
 )
 ```
 
+## 依赖版本
+
+推荐使用以下版本（Tushare 相关脚本）：
+
+- `pandas==2.3.3`
+- `tushare==1.4.24`
+
+安装示例：`pip install pandas==2.3.3 tushare==1.4.24`。AkShare 脚本另需 `pip install akshare`；QMT 脚本需本地安装并配置 xtquant。
+
 ## 数据源说明
 
 ### QMT (xtquant)
@@ -67,7 +76,7 @@ result = download_stock_data(
 
 ### Tushare
 - 需环境变量 `TUSHARE_TOKEN`
-- **日线分两种，不合并**：**历史数据**用 `download_tushare_daily.py`（pro.daily）；**复权日线**用 `download_tushare_daily_adj.py`（ts.pro_bar，前复权/后复权）。
+- **日线分两种，不合并**：**历史数据**用 `download_tushare_daily_histroy.py`（pro.daily）；**复权日线**用 `download_tushare_daily.py`（ts.pro_bar，前复权/后复权）。
 - 分钟需单独开通权限
 - 单股财务：`download_tushare_fundamental_single.py`（约 2000 积分）
 - 全市场财务批量：`download_tushare_fundamental.py`
